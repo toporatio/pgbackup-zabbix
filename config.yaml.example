@@ -1,0 +1,41 @@
+# pgbackup-zabbix configuration example.
+# Copy as `config.yaml` next to the binary. If the file is missing the binary
+# will create a template on first run and exit with code 2.
+
+postgres:
+  host: 127.0.0.1
+  port: 5432
+  user: postgres
+  # Password is NOT stored here.
+  # Provide it via ~/.pgpass for the user that runs the binary:
+  #   echo "127.0.0.1:5432:*:postgres:secret" > ~/.pgpass && chmod 600 ~/.pgpass
+
+backup:
+  directory: /mnt/DATABASES/
+  retention_days: 7
+  exclude_databases:
+    - postgres
+    - template0
+    - template1
+    - pg17_db01
+    - pg17_db02
+    - stazh1
+    - stazh2
+    - test_ut
+    - ut25112022
+    - tbcopy27022026
+    - tbcopy01
+    - asirotkin
+
+tools:
+  pg_dump: /usr/bin/pg_dump
+  vacuumdb: /usr/bin/vacuumdb
+  psql: /usr/bin/psql
+
+zabbix:
+  enabled: true
+  server: 127.0.0.1
+  port: 10051
+  # Must exactly match the "Host name" (not "Visible name") configured in Zabbix.
+  host: pg-backup-host
+  timeout_seconds: 10

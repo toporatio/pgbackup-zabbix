@@ -1,0 +1,13 @@
+# Build artifacts (the prebuilt linux/amd64 binary is intentionally committed
+# at /pgbackup-zabbix for distribution per the project README)
+/pgbackup-zabbix-*
+*.exe
+*.dump
+
+# Runtime config (only the .example is tracked)
+config.yaml
+
+# IDE / OS junk
+.idea/
+.vscode/
+.DS_Store
